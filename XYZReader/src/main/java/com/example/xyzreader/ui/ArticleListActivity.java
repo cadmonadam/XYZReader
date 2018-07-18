@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -39,7 +40,7 @@ import java.util.GregorianCalendar;
  * activity presents a grid of items as cards.
  */
 public class ArticleListActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+        android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = ArticleListActivity.class.toString();
     private Toolbar mToolbar;
@@ -57,15 +58,16 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final View toolbarContainerView = findViewById(R.id.toolbar_container);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        getLoaderManager().initLoader(0, null, this);
+        getSupportLoaderManager().initLoader(0, null, this);
 
         if (savedInstanceState == null) {
             refresh();
@@ -105,13 +107,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
     }
 
+    @NonNull
     @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return ArticleLoader.newAllArticlesInstance(this);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    public void onLoadFinished(@NonNull android.support.v4.content.Loader<Cursor> cursorLoader, Cursor cursor) {
         Adapter adapter = new Adapter(cursor);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
@@ -122,7 +125,7 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull android.support.v4.content.Loader<Cursor> loader) {
         mRecyclerView.setAdapter(null);
     }
 

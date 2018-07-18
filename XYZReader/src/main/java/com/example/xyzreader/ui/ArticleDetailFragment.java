@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
@@ -39,8 +40,8 @@ import com.example.xyzreader.data.ArticleLoader;
  * either contained in a {@link ArticleListActivity} in two-pane mode (on
  * tablets) or a {@link ArticleDetailActivity} on handsets.
  */
-public class ArticleDetailFragment extends Fragment implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+public class ArticleDetailFragment extends android.support.v4.app.Fragment implements
+        android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -112,7 +113,7 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
         mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
@@ -261,13 +262,15 @@ public class ArticleDetailFragment extends Fragment implements
         }
     }
 
+
+    @NonNull
     @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return ArticleLoader.newInstanceForItemId(getActivity(), mItemId);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    public void onLoadFinished(@NonNull android.support.v4.content.Loader<Cursor> cursorLoader, Cursor cursor) {
         if (!isAdded()) {
             if (cursor != null) {
                 cursor.close();
@@ -286,7 +289,7 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    public void onLoaderReset(@NonNull android.support.v4.content.Loader<Cursor> cursorLoader) {
         mCursor = null;
         bindViews();
     }

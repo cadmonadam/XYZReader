@@ -24,7 +24,7 @@ import com.example.xyzreader.data.ItemsContract;
  * An activity representing a single Article detail screen, letting you swipe between articles.
  */
 public class ArticleDetailActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+        implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
 
     private Cursor mCursor;
     private long mStartId;
@@ -48,9 +48,9 @@ public class ArticleDetailActivity extends AppCompatActivity
         }
         setContentView(R.layout.activity_article_detail);
 
-        getLoaderManager().initLoader(0, null, this);
+        getSupportLoaderManager().initLoader(0, null, this);
 
-        mPagerAdapter = new MyPagerAdapter(getFragmentManager());
+        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mPagerAdapter);
         mPager.setPageMargin((int) TypedValue
@@ -90,8 +90,12 @@ public class ArticleDetailActivity extends AppCompatActivity
             mUpButtonContainer.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    view.onApplyWindowInsets(windowInsets);
-                    mTopInset = windowInsets.getSystemWindowInsetTop();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                        view.onApplyWindowInsets(windowInsets);
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                        mTopInset = windowInsets.getSystemWindowInsetTop();
+                    }
                     mUpButtonContainer.setTranslationY(mTopInset);
                     updateUpButtonPosition();
                     return windowInsets;
@@ -108,12 +112,12 @@ public class ArticleDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return ArticleLoader.newAllArticlesInstance(this);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    public void onLoadFinished(android.support.v4.content.Loader<Cursor> cursorLoader, Cursor cursor) {
         mCursor = cursor;
         mPagerAdapter.notifyDataSetChanged();
 
@@ -134,7 +138,7 @@ public class ArticleDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    public void onLoaderReset(android.support.v4.content.Loader<Cursor> cursorLoader) {
         mCursor = null;
         mPagerAdapter.notifyDataSetChanged();
     }
@@ -151,8 +155,8 @@ public class ArticleDetailActivity extends AppCompatActivity
         mUpButton.setTranslationY(Math.min(mSelectedItemUpButtonFloor - upButtonNormalBottom, 0));
     }
 
-    private class MyPagerAdapter extends FragmentStatePagerAdapter {
-        public MyPagerAdapter(FragmentManager fm) {
+    private class MyPagerAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
+        public MyPagerAdapter(android.support.v4.app.FragmentManager fm) {
             super(fm);
         }
 
@@ -167,7 +171,7 @@ public class ArticleDetailActivity extends AppCompatActivity
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public android.support.v4.app.Fragment getItem(int position) {
             mCursor.moveToPosition(position);
             return ArticleDetailFragment.newInstance(mCursor.getLong(ArticleLoader.Query._ID));
         }
