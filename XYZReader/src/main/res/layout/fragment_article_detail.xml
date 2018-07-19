@@ -96,7 +96,7 @@ android:layout_height="match_parent"
         </LinearLayout>
 
 
-        <android.support.design.widget.FloatingActionButton
+<!--        <android.support.design.widget.FloatingActionButton
             android:id="@+id/share_fab"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -107,7 +107,7 @@ android:layout_height="match_parent"
             android:contentDescription="@string/action_share"
             app:elevation="@dimen/fab_elevation"
             android:src="@drawable/ic_share"
-            android:stateListAnimator="@anim/fab_state_list_anim" />
+            android:stateListAnimator="@anim/fab_state_list_anim" />-->
 
     </RelativeLayout>
 </RelativeLayout>

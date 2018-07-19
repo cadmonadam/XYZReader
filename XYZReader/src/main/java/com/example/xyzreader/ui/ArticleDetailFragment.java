@@ -107,7 +107,7 @@ public class ArticleDetailFragment extends android.support.v4.app.Fragment imple
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
         mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
-        mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
+/*        mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
@@ -115,7 +115,7 @@ public class ArticleDetailFragment extends android.support.v4.app.Fragment imple
                         .setText("Some sample text")
                         .getIntent(), getString(R.string.action_share)));
             }
-        });
+        });*/
 
         bindViews();
         return mRootView;
