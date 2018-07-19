@@ -8,5 +8,7 @@
     <string name="action_share">Share</string>
 
     <string name="up">Up</string>
+    <string name="refresh_message">Refreshed successfully! Enjoy reading!</string>
+
 
 </resources>

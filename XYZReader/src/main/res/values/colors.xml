@@ -22,4 +22,33 @@
     <color name="theme_primary_dark">#04561A</color>
     <color name="theme_accent">#04561A</color>
     <color name="ltgray">#ffe0e0e0</color>
+
+
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#0069c0</color>
+    <color name="colorAccent">#6ec6ff</color>
+
+    <color name="primaryColor">#2196f3</color>
+
+    <color name="primaryLightColor">#6ec6ff</color>
+
+    <color name="primaryDarkColor">#0069c0</color>
+
+    <color name="primaryLightColorTransparent">#806ec6ff</color>
+    <color name="primaryDarkColorTrasparent">#800069c0</color>
+
+
+    <color name="secondaryColor">#81d4fa</color>
+
+    <color name="secondaryLightColor">#b6ffff</color>
+
+    <color name="secondaryDarkColor">#4ba3c7</color>
+
+    <color name="primaryTextColor">#000000</color>
+
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="color_white">#fff</color>
+    <color name="color_grey">#333</color>
+
 </resources>

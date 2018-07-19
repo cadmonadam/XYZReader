@@ -1,16 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        style="Widget.ProgressBar.Small.Inverse"
+        android:progressTint="@color/colorAccent"
+        android:indeterminate="true" />
+
     <android.support.v4.view.ViewPager
+        android:layout_below="@+id/up_container"
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <FrameLayout
+    <android.support.v7.widget.Toolbar
         android:id="@+id/up_container"
-        android:background="@android:color/transparent"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
+        android:elevation="4dp"
         android:layout_height="?actionBarSize">
 
         <ImageButton
@@ -21,5 +32,5 @@
             android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/up"
             android:src="@drawable/ic_arrow_back" />
-    </FrameLayout>
-</FrameLayout>
+    </android.support.v7.widget.Toolbar>
+</RelativeLayout>
