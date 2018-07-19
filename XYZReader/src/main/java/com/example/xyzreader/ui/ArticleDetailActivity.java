@@ -2,6 +2,7 @@ package com.example.xyzreader.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -47,7 +48,6 @@ public class ArticleDetailActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
 
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -55,7 +55,7 @@ public class ArticleDetailActivity extends AppCompatActivity
         mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
@@ -66,7 +66,7 @@ public class ArticleDetailActivity extends AppCompatActivity
                 if (mCursor != null) {
                     mCursor.moveToPosition(position);
                 }
-                mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
+                //mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
             }
         });
 
@@ -83,19 +83,21 @@ public class ArticleDetailActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {
                 mStartId = ItemsContract.Items.getItemId(getIntent().getData());
-                mSelectedItemId = mStartId;
+                //mSelectedItemId = mStartId;
             }
         } else {
             mStartId = savedInstanceState.getLong(EXTRA_START_ID);
         }
-
         getSupportLoaderManager().initLoader(0, null, this);
     }
 
     @Override
-    public CursorLoader onCreateLoader(int i, Bundle bundle) {
-        return ArticleLoader.newInstanceForItemId(this, mSelectedItemId);
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return ArticleLoader.newAllArticlesInstance(this);
     }
+/*    public CursorLoader onCreateLoader(int i, Bundle bundle) {
+        return ArticleLoader.newInstanceForItemId(this, mSelectedItemId);
+    }*/
 
     @Override
     public void onLoadFinished(@NonNull android.support.v4.content.Loader<Cursor> loader, Cursor data) {
