@@ -40,9 +40,8 @@ import com.example.xyzreader.data.ArticleLoader;
  */
 public class ArticleDetailFragment extends android.support.v4.app.Fragment implements
         android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "ArticleDetailFragment";
-
     public static final String ARG_ITEM_ID = "item_id";
+    private static final String TAG = "ArticleDetailFragment";
     private static final float PARALLAX_FACTOR = 1.25f;
 
     private Cursor mCursor;

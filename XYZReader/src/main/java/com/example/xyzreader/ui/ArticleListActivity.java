@@ -55,7 +55,18 @@ public class ArticleListActivity extends AppCompatActivity implements
     // Use default locale format
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
-    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
+    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
+    private boolean mIsRefreshing = false;
+    private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
+                mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
+                if (adapter.getItemCount() > 0)
+                    updateRefreshingUI();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,19 +114,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         unregisterReceiver(mRefreshingReceiver);
     }
 
-    private boolean mIsRefreshing = false;
-
-    private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-                mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-                if (adapter.getItemCount() > 0)
-                updateRefreshingUI();
-            }
-        }
-    };
-
     private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
     }
@@ -128,7 +126,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(@NonNull android.support.v4.content.Loader<Cursor> loader, Cursor data) {
-        adapter.setCursor (data);
+        adapter.setCursor(data);
         Snackbar snackbar = Snackbar.make(mToolbar, getResources().getString(R.string.refresh_message), Snackbar.LENGTH_LONG);
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.primaryDarkColor));
         snackbar.show();
@@ -138,6 +136,19 @@ public class ArticleListActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(@NonNull android.support.v4.content.Loader<Cursor> loader) {
         mRecyclerView.setAdapter(null);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public DynamicHeightNetworkImageView thumbnailView;
+        public TextView titleView;
+        public TextView subtitleView;
+
+        public ViewHolder(View view) {
+            super(view);
+            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
+            titleView = (TextView) view.findViewById(R.id.article_title);
+            subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
+        }
     }
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
@@ -151,13 +162,13 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         }
 
+        public Cursor getCursor() {
+            return mCursor;
+        }
+
         public void setCursor(Cursor cursor) {
             mCursor = cursor;
             notifyDataSetChanged();
-        }
-
-        public Cursor getCursor() {
-            return mCursor;
         }
 
         @Override
@@ -208,8 +219,8 @@ public class ArticleListActivity extends AppCompatActivity implements
             } else {
                 holder.subtitleView.setText(Html.fromHtml(
                         outputFormat.format(publishedDate)
-                        + "<br/>" + " by "
-                        + mCursor.getString(ArticleLoader.Query.AUTHOR)));
+                                + "<br/>" + " by "
+                                + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             }
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
@@ -224,19 +235,6 @@ public class ArticleListActivity extends AppCompatActivity implements
             } else {
                 return 0;
             }
-        }
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public DynamicHeightNetworkImageView thumbnailView;
-        public TextView titleView;
-        public TextView subtitleView;
-
-        public ViewHolder(View view) {
-            super(view);
-            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
-            titleView = (TextView) view.findViewById(R.id.article_title);
-            subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
         }
     }
 }

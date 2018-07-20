@@ -148,6 +148,12 @@ public class ArticleDetailActivity extends AppCompatActivity
         mPagerAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(EXTRA_START_ID, mStartId);
+    }
+
     private class MyPagerAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
         public MyPagerAdapter(android.support.v4.app.FragmentManager fm) {
             super(fm);
@@ -176,12 +182,6 @@ public class ArticleDetailActivity extends AppCompatActivity
         public int getCount() {
             return (mCursor != null) ? mCursor.getCount() : 0;
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putLong(EXTRA_START_ID, mStartId);
     }
 
 }
