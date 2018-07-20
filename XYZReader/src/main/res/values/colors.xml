@@ -33,5 +33,6 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="color_white">#fff</color>
+    <color name="color_title_details">#8fff</color>
 
 </resources>

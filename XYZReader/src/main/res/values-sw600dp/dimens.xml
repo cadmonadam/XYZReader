@@ -2,4 +2,16 @@
     <!-- detail -->
     <dimen name="detail_title_text_size">42sp</dimen>
     <dimen name="detail_body_text_size">20sp</dimen>
+    <dimen name="fab_default_elevation">6dp</dimen>
+    <dimen name="fab_layout_width_and_hight">56dp</dimen>
+    <dimen name="fab_layout_margin">16dp</dimen>
+    <dimen name="toolbar_default_elevation">4dp</dimen>
+    <dimen name="imgButton_layout_width">56dp</dimen>
+    <dimen name="appBar_default_elevation">4dp</dimen>
+    <dimen name="fragment_imageView_height">200dp</dimen>
+    <dimen name="mainText_margin_top">24dp</dimen>
+    <dimen name="ctbar_MarginEnd">64dp</dimen>
+    <dimen name="ctbar_MarginStart">32dp</dimen>
+    <dimen name="ctbar_MarginBottom">32dp</dimen>
+    <dimen name="RclerView_padding_bottom">28dp</dimen>
 </resources>

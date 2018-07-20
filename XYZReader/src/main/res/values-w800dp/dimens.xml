@@ -1,20 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- detail -->
-    <dimen name="detail_title_text_size">32sp</dimen>
-    <dimen name="detail_body_text_size">22sp</dimen>
-
-    <!-- list_item_article.xml -->
-    <dimen name="margin_cardview">8dp</dimen>
-    <dimen name="cardview_corner_radius">4dp</dimen>
-
-    <dimen name="padding_normal_article_title">16dp</dimen>
-    <dimen name="padding_small_article_title">4dp</dimen>
-    <dimen name="padding_article_subtitle">16dp</dimen>
-
-    <integer name="max_line_article_title">4</integer>
-    <integer name="max_line_article_subtitle">2</integer>
-
-    <dimen name="placeholder_image_height">100dp</dimen>
     <dimen name="fab_default_elevation">6dp</dimen>
     <dimen name="fab_layout_width_and_hight">56dp</dimen>
     <dimen name="fab_layout_margin">16dp</dimen>
@@ -27,6 +12,4 @@
     <dimen name="ctbar_MarginStart">32dp</dimen>
     <dimen name="ctbar_MarginBottom">32dp</dimen>
     <dimen name="RclerView_padding_bottom">28dp</dimen>
-
-
 </resources>

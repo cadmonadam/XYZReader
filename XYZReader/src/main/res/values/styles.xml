@@ -74,5 +74,87 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <!--fragment_article_detail.xml -->
+
+    <style name="Fragment_ImageView_Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/fragment_imageView_height</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="Fragment_LinearLayout_TitleSection">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/photo_container</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">@dimen/detail_metabar_vert_padding</item>
+        <item name="android:paddingLeft">@dimen/detail_inner_horiz_margin</item>
+        <item name="android:paddingRight">@dimen/detail_inner_horiz_margin</item>
+        <item name="android:paddingTop">@dimen/detail_metabar_vert_padding</item>
+    </style>
+
+    <style name="Fragment_LinearLayout_Details">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/meta_bar</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@color/color_white</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!--activity_article_list.xml -->
+
+    <style name="CollapsingToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="HeaderImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:paddingBottom">@dimen/RclerView_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/list_side_margin</item>
+        <item name="android:paddingRight">@dimen/list_side_margin</item>
+        <item name="android:paddingTop">@dimen/list_side_margin</item>
+        <item name="android:scrollbarStyle">insideOverlay</item>
+    </style>
+
+    <!--activity_article_detail.xml -->
+
+    <style name="fab">
+        <item name="android:layout_width">@dimen/fab_layout_width_and_hight</item>
+        <item name="android:layout_height">@dimen/fab_layout_width_and_hight</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_gravity">end|bottom</item>
+        <item name="android:layout_margin">@dimen/fab_layout_margin</item>
+        <item name="android:elevation">@dimen/fab_default_elevation</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:elevation">@dimen/toolbar_default_elevation</item>
+        <item name="android:layout_height">?actionBarSize</item>
+    </style>
+
+    <style name="ImageButton">
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:layout_width">@dimen/imgButton_layout_width</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:contentDescription">@string/up</item>
+    </style>
+
 
 </resources>
