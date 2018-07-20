@@ -1,24 +1,15 @@
 package com.example.xyzreader.ui;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.ShareCompat;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -33,7 +24,7 @@ import com.example.xyzreader.data.ItemsContract;
 public class ArticleDetailActivity extends AppCompatActivity
         implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String EXTRA_START_ID = "start_id";
+    private static final String HELPER_START_ID = "start_id";
     private Cursor mCursor;
     private long mStartId;
 
@@ -90,7 +81,7 @@ public class ArticleDetailActivity extends AppCompatActivity
                 //mSelectedItemId = mStartId;
             }
         } else {
-            mStartId = savedInstanceState.getLong(EXTRA_START_ID);
+            mStartId = savedInstanceState.getLong(HELPER_START_ID);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -151,7 +142,7 @@ public class ArticleDetailActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong(EXTRA_START_ID, mStartId);
+        outState.putLong(HELPER_START_ID, mStartId);
     }
 
     private class MyPagerAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
